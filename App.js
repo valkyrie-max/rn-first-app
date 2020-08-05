@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native';
 
 export default function App() {
   // hook to manage the user entries
@@ -31,9 +31,11 @@ export default function App() {
       </View>
 
       {/* goals */}
-      <View>
-        {courseGoals.map((goal) => <Text key={goal}>{goal}</Text>)}
-      </View>
+      <ScrollView>
+        {courseGoals.map((goal) => <View key={goal} style={styles.listItem}>
+          <Text>{goal}</Text>
+        </View>)}
+      </ScrollView>
     </View>
   );
 }
@@ -42,19 +44,27 @@ const styles = StyleSheet.create({
   screen: {
     padding: 50,
     height: '100%',
-    backgroundColor: '#C0A9A1'
+    backgroundColor: '#E6D6B2'
   },
   inputContainer: {
       flexDirection: 'row',
       justifyContent: 'space-between',
-      alignItems: 'center'
+      alignItems: 'center',
+      paddingBottom: 30
   },
   input: {
-    borderColor: 'black',
+    borderColor: '#5DAF77',
     borderWidth: 1,
     padding: 10,
     fontSize: 20,
     width: 220
+  },
+  listItem: {
+    padding: 10,
+    backgroundColor: '#D1A89A',
+    borderColor: '#C89678',
+    borderWidth: 2,
+    marginTop: 20
   }
 });
 
