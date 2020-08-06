@@ -5,7 +5,7 @@ const GoalItem = props => {
     return (
         <TouchableOpacity activeOpacity={0.5} onPress={props.onDelete.bind(this, props.id)}>
             <View onTouch style={styles.listItem}>
-                <Text>{props.title}</Text>
+                <Text style={styles.textColor}>{props.title}</Text>
             </View>
         </TouchableOpacity>
     )
@@ -14,10 +14,13 @@ const GoalItem = props => {
 const styles = StyleSheet.create({
     listItem: {
         padding: 10,
-        backgroundColor: '#5DAF77',
+        backgroundColor: '#2D3142',
         borderColor: 'black',
         borderWidth: 1,
         marginTop: 20
+    },
+    textColor: {
+        color: '#E9F2E3'
     }
 })
 

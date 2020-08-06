@@ -1,11 +1,8 @@
 import React, {useState} from 'react';
 import { 
   StyleSheet, 
-  Text, 
   View, 
-  TextInput, 
   Button, 
-  ScrollView,
   FlatList } from 'react-native';
 
 import GoalItem from './components/GoalItem';
@@ -13,7 +10,8 @@ import GoalInput from './components/GoalInput'
 
 export default function App() {
   // hook to manage the user entries
-  const [ courseGoals, setCourseGoals] = useState([])
+  const [courseGoals, setCourseGoals] = useState([]);
+  const [isAddMode, setIsAddMode] = useState(false);
 
   const addGoalHandler = goalTitle => {
     setCourseGoals(currentGoals => [
@@ -22,7 +20,8 @@ export default function App() {
         id: Math.random().toString(), 
         value: goalTitle 
       }
-    ])
+    ]);
+    setIsAddMode(false);
   }
 
   const removeGoalHandler = goalId => {
@@ -33,8 +32,9 @@ export default function App() {
 
   return (
     <View style={styles.screen}>
+      <Button onPress={() => setIsAddMode(true)} title="Add New Goal!"/>
       {/* top bar */}
-      <GoalInput onAddGoal={addGoalHandler} />
+      <GoalInput visible={isAddMode} onAddGoal={addGoalHandler} />
       {/* goals */}
       <FlatList
         keyExtractor={(item, index) => item.id}
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   screen: {
     padding: 50,
     height: '100%',
-    backgroundColor: '#E6D6B2'
+    backgroundColor: '#E9F2E3'
   }
 });
 
