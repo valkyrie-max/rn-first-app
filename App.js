@@ -14,14 +14,18 @@ export default function App() {
   const [isAddMode, setIsAddMode] = useState(false);
 
   const addGoalHandler = goalTitle => {
-    setCourseGoals(currentGoals => [
-      ...courseGoals, 
-      { 
-        id: Math.random().toString(), 
-        value: goalTitle 
-      }
-    ]);
-    setIsAddMode(false);
+    if (goalTitle.length === 0) {
+      alert('Enter a goal.')
+    } else {
+      setCourseGoals(currentGoals => [
+        ...courseGoals, 
+        { 
+          id: Math.random().toString(), 
+          value: goalTitle 
+        }
+      ]);
+      setIsAddMode(false);
+    }
   }
 
   const removeGoalHandler = goalId => {
